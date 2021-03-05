@@ -8,7 +8,7 @@ namespace Filed.PaymentService.WebAPI.ServiceInjection
 {
     public static class InjectionService
     {
-        public static void InjectService(Microsoft.Extensions.DependencyInjection.IServiceCollection service,IConfiguration configuration)
+        public static void InjectServices(this Microsoft.Extensions.DependencyInjection.IServiceCollection service,IConfiguration configuration)
         {
             var injections = typeof(Startup).Assembly.ExportedTypes.Where(w => typeof(IServiceInjection).IsAssignableFrom(w) && !w.IsInterface && !w.IsAbstract).
                 Select(Activator.CreateInstance).Cast<IServiceInjection>().ToList();

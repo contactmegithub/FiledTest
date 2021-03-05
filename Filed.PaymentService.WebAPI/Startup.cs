@@ -1,3 +1,5 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Field.PaymentService.DataAccess.EntityFramework.Library.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Filed.PaymentService.WebAPI.ServiceInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
@@ -24,18 +27,13 @@ namespace Filed.PaymentService.WebAPI
 
         public IConfiguration Configuration { get; }
 
+        public ILifetimeScope AutofacContainer { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection service)
         {
-            services.AddDbContext<PaymentContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Filed.PaymentService.WebAPI", Version = "v1" });
-            });
+            service.InjectServices(Configuration);
+            service.AddOptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +54,7 @@ namespace Filed.PaymentService.WebAPI
             {
                 endpoints.MapControllers();
             });
+            this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
         }
     }
 }
