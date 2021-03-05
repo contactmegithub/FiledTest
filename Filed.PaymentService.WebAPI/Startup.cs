@@ -29,13 +29,17 @@ namespace Filed.PaymentService.WebAPI
 
         public ILifetimeScope AutofacContainer { get; private set; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection service)
         {
             service.InjectServices(Configuration);
             service.AddOptions();
         }
-
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterModule(new DependancyInjection());
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -45,7 +49,11 @@ namespace Filed.PaymentService.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Filed.PaymentService.WebAPI v1"));
             }
-
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<PaymentContext>();
+                context.Database.EnsureCreated();
+            }
             app.UseRouting();
 
             app.UseAuthorization();
