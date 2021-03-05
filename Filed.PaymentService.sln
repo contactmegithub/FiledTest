@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Field.PaymentGateway.Librar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Field.PaymentService.DataAccess.EntityFramework.Library", "Field.PaymentService.DataAccess.EntityFramework.Library\Field.PaymentService.DataAccess.EntityFramework.Library.csproj", "{2460FB84-C506-4F66-9EDB-6582FD3C0B3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unitTest", "unitTest", "{BB337BC0-6189-4409-8399-64DF633D2A24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filed.PaymentService.WebAPI.UnitTest", "Filed.PaymentService.WebAPI.UnitTest\Filed.PaymentService.WebAPI.UnitTest.csproj", "{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{2460FB84-C506-4F66-9EDB-6582FD3C0B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2460FB84-C506-4F66-9EDB-6582FD3C0B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2460FB84-C506-4F66-9EDB-6582FD3C0B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8CE8E981-746A-4FA8-9A5E-7D0D9FF63C96} = {BB337BC0-6189-4409-8399-64DF633D2A24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {394E1575-059B-4584-9263-FAF5FF109656}
